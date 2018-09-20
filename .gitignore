@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+# file: ~/.gitignore_global
+.DS_Store
+.idea
