@@ -22,13 +22,13 @@ const borderType = {
 }
 
 const defaultMap = `
-xxxxxxxxxxx
-x┌________/
-x|        /
-x|        /
-x----|    /
-xxxxx|    /
-xxxxx-----x`;
+xxxxxxx
+x┌____/
+x|    /
+x|    /
+x--|  /
+xxx|  /
+xxx---x`;
 
 //.left-active { border-left:3px solid #000; }
 export default {
@@ -100,7 +100,7 @@ export default {
 
 <style scoped lang="scss">
 * { box-sizing:border-box; }
-$cols: 11; // the number of columns
+$cols: 7; // the number of columns
 $colwidth: 100%/$cols;
 
 .field { width:$colwidth; border:1px solid #DDD; position:relative; display:inline-block; }
