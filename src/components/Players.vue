@@ -18,8 +18,8 @@
         <div v-bind:key="id" class="list-group-item" v-for="(player,id) in Players">
             {{ player.name }} <button class="btn btn-xs btn-danger" @click="deleteEvent(player)">Delete</button>
         </div>
-        <b-button disabled v-if="Players.length == 0 || Players.length > 2" variant="success" href="/play">Start game!</b-button>
-        <b-button v-if="Players.length != 0 && Players.length == 2" variant="success" href="/play">Start game!</b-button>
+        <b-button disabled v-if="Players.length == 0 || Players.length > 2" variant="success" to="/play">Start game!</b-button>
+        <b-button v-if="Players.length != 0 && Players.length == 2" variant="success" to="/play">Start game!</b-button>
     </div>
 </template>
 
