@@ -15,7 +15,7 @@
         <div class="list-group-item" v-if="Players.length > 2">
             Too many players registered. Only 2 players are possible.
         </div>
-        <div class="list-group-item" v-for="player in Players">
+        <div v-bind:key="id" class="list-group-item" v-for="(player,id) in Players">
             {{ player.name }} <button class="btn btn-xs btn-danger" @click="deleteEvent(player)">Delete</button>
         </div>
         <b-button disabled v-if="Players.length == 0 || Players.length > 2" variant="success" href="/play">Start game!</b-button>

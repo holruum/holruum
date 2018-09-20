@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Play from './views/Play.vue'
 
 Vue.use(Router)
 
@@ -19,11 +20,16 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
-      {
-          path: '/guide',
-          name: 'guide',
-          component: () => import(/* webpackChunkName: "about" */ './views/Guide.vue')
-      }
+    {
+        path: '/guide',
+        name: 'guide',
+        component: () => import(/* webpackChunkName: "about" */ './views/Guide.vue')
+    },
+    {
+      path: '/play',
+      name: 'play',
+      component: Play
+    }
   ],
   mode: 'history'
 })
