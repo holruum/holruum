@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import Players from '@/components/Players.vue'
+
 // the borderTypes
 const borderType = {
   enabled: 1,
@@ -33,21 +35,21 @@ xxx---x`;
 //.left-active { border-left:3px solid #000; }
 export default {
   name: 'play',
-  components: {},
+  components: {
+      Players
+  },
   data: () => {
-
-    var fields = defaultMap.replace('\r', '').split('\n').filter(c => c != '')
-      .map(r => r.split('').map(c => {
-        if(c == 'x') return { top: borderType.disabled, left: borderType.disabled, player:null };
-        if(c == '┌') return { top: borderType.outer, left: borderType.outer, player:null };
-        if(c == '-') return { top: borderType.outer, left: borderType.disabled, player:null };
-        if(c == '_') return { top: borderType.outer, left: borderType.enabled, player:null };
-        if(c == '|') return { top: borderType.enabled, left: borderType.outer, player:null };
-        if(c == '/') return { top: borderType.disabled, left: borderType.outer, player:null };
-        if(c == ' ') return { top: borderType.enabled, left: borderType.enabled, player:null };
-      }));
-
-    return  {
+      const fields = defaultMap.replace('\r', '').split('\n').filter(c => c != '')
+          .map(r => r.split('').map(c => {
+              if (c == 'x') return {top: borderType.disabled, left: borderType.disabled, player: null};
+              if (c == '┌') return {top: borderType.outer, left: borderType.outer, player: null};
+              if (c == '-') return {top: borderType.outer, left: borderType.disabled, player: null};
+              if (c == '_') return {top: borderType.outer, left: borderType.enabled, player: null};
+              if (c == '|') return {top: borderType.enabled, left: borderType.outer, player: null};
+              if (c == '/') return {top: borderType.disabled, left: borderType.outer, player: null};
+              if (c == ' ') return {top: borderType.enabled, left: borderType.enabled, player: null};
+          }));
+      return  {
       fields: fields,
       borderType: borderType,
       currentPlayer: 1
@@ -57,18 +59,19 @@ export default {
   },
   methods: {
     click: function(x,y,position) {
+        console.log(Players);
       // Set the clicked border - change type to outer
       this.fields[y][x][position] = borderType.outer;
 
-      var surrounded = function(x,y,fields) {
-        return (fields[y][x].top == borderType.outer && fields[y+1][x].top == borderType.outer &&
-          fields[y][x].left == borderType.outer && fields[y][x+1].left == borderType.outer);
-      }
+        const surrounded = function (x, y, fields) {
+            return (fields[y][x].top == borderType.outer && fields[y + 1][x].top == borderType.outer &&
+                fields[y][x].left == borderType.outer && fields[y][x + 1].left == borderType.outer);
+        };
 
-      // Sum up the current players points to check if points have been made
-      var points = this.playerPoints(this.currentPlayer);
+        // Sum up the current players points to check if points have been made
+        const points = this.playerPoints(this.currentPlayer);
 
-      // Determine if one of the boxes is surrounded with borders
+        // Determine if one of the boxes is surrounded with borders
       if(position == 'top') { // If top has been clicked, check the current box and the box on top of it
         if(surrounded(x,y,this.fields)) {
           this.fields[y][x].player = this.currentPlayer;
