@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Players />
     Current player: {{currentPlayer}}
     <div style="position:relative; padding:50px; line-height:0">
       <div v-bind:key="y" v-for="(r,y) in fields">
@@ -59,7 +60,6 @@ export default {
   },
   methods: {
     click: function(x,y,position) {
-        console.log(Players);
       // Set the clicked border - change type to outer
       this.fields[y][x][position] = borderType.outer;
 

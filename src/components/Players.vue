@@ -24,6 +24,34 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+    import Vuex from 'vuex'
+    import 'es6-promise/auto'
+
+    Vue.use(Vuex);
+
+    const store = new Vuex.Store({
+        state: {
+            count: 0,
+            Players: [
+
+            ],
+            playerName: ""
+        },
+        mutations: {
+            increment (state) {
+                state.count++
+            },
+            addPlayer (state, player){
+                state.Players.push(player);
+            },
+            deletePlayer (state, player){
+                state.Players.splice(state.Players.indexOf(player), 1);
+            }
+        }
+
+    })
+
     export default {
         name: 'Players',
         data: () => {
@@ -38,10 +66,12 @@
         methods: {
             addPlayer: function(){
                 this.Players.push({name: this.playerName});
+                store.commit('addPlayer', {name: this.playerName});
                 this.playerName = '';
             },
             deleteEvent: function(player) {
                 this.Players.splice(this.Players.indexOf(player), 1);
+                store.commit('deletePlayer', {name: this.playerName});
             }
         }
     }
