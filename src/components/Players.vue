@@ -38,6 +38,7 @@
         methods: {
             addPlayer: function(){
                 this.Players.push({name: this.playerName});
+                this.playerName = '';
             },
             deleteEvent: function(player) {
                 this.Players.splice(this.Players.indexOf(player), 1);
