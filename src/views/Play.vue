@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind:class="{finished:finished()}">
     Current player: {{$store.state.players[currentPlayer-1]}}<br>
     {{$store.state.players[0]}}: {{playerPoints(1)}}<br>
     {{$store.state.players[1]}}: {{playerPoints(2)}}
@@ -84,8 +84,10 @@ export default {
 
       // Finish the game if appropriate
       if(this.finished()) {
-        this.$store.commit('setScores', [this.playerPoints(1), this.playerPoints(2)]);
-        this.$router.push('/scores');
+        window.setTimeout(() => {
+          this.$store.commit('setScores', [this.playerPoints(1), this.playerPoints(2)]);
+          this.$router.push('/scores');
+        }, 1000);
       }
     },
     playerPoints: function(player) {
