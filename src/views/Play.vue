@@ -107,8 +107,8 @@ $colwidth: 100%/$cols;
 
 .field { width:$colwidth; border:1px solid #DDD; position:relative; display:inline-block; }
 .field:after { display:block; content:' '; padding-bottom:100%; }
-.field-p1 { background:red; }
-.field-p2 { background:blue; }
+.field-p1 { background:#d73027; }
+.field-p2 { background:#4575b4; }
 
 $edge-width:5px;
 .edge { background:#DDD; position:absolute; border-radius:100%; }
