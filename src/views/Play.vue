@@ -118,6 +118,6 @@ $edge-width:5px;
 .edge-top { width:100%; height:$edge-width; top:-$edge-width/2; left:0; }
 .edge-left { width:$edge-width; height:100%;  top:0; left:-$edge-width/2; }
 // helpers which make the box to click a bit larger
-.edge-top:after { position:relative; top:-20px; height:40px; width:100%; display:block; content:' '; }
-.edge-left:after { position:relative; left:-20px; width:40px; height:100%; display:block; content:' '; }
+.edge-top:after { position:relative; top:-5px; height:10px; width:100%; display:block; content:' '; }
+.edge-left:after { position:relative; left:-5px; width:10px; height:100%; display:block; content:' '; }
 </style>
