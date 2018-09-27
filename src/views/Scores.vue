@@ -10,11 +10,11 @@
     </b-progress>
   </div>
 </template>
-<style>
-  .bg-warning {
+<style lang="css" scoped>
+  .b-progress-bar.bg-warning {
     background-color: #d73027 !important;
   }
-  .bg-primary {
+  .b-progress-bar.bg-primary {
     background-color: #4575b4 !important;
   }
 
