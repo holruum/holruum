@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Players />
-    Current player: {{currentPlayer}}
+    Current player: {{$store.state.players[currentPlayer-1]}}
     <div style="position:relative; line-height:0">
       <div v-bind:key="y" v-for="(r,y) in fields">
         <!-- Fields -->
@@ -15,7 +14,6 @@
 </template>
 
 <script>
-import Players from '@/components/Players.vue'
 
 // the borderTypes
 const borderType = {
@@ -35,9 +33,6 @@ xxx---x`;
 
 export default {
   name: 'play',
-  components: {
-      Players
-  },
   data: () => {
       const fields = defaultMap.replace('\r', '').split('\n').filter(c => c != '')
           .map(r => r.split('').map(c => {
