@@ -118,4 +118,13 @@ $edge-width:5px;
 // helpers which make the box to click a bit larger
 .edge-top:after { position:relative; top:-5px; height:10px; width:100%; display:block; content:' '; }
 .edge-left:after { position:relative; left:-5px; width:10px; height:100%; display:block; content:' '; }
+.finished .field { animation : rotation 2s infinite linear; }
+@keyframes rotation {
+		from {
+				transform: rotate(0deg);
+		}
+		to {
+				transform: rotate(359deg);
+		}
+}
 </style>
