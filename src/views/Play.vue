@@ -33,7 +33,6 @@ x--|  /
 xxx|  /
 xxx---x`;
 
-//.left-active { border-left:3px solid #000; }
 export default {
   name: 'play',
   components: {
