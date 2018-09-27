@@ -2,7 +2,7 @@
   <div>
     <Players />
     Current player: {{currentPlayer}}
-    <div style="position:relative; padding:50px; line-height:0">
+    <div style="position:relative; line-height:0">
       <div v-bind:key="y" v-for="(r,y) in fields">
         <!-- Fields -->
         <div v-bind:key="x" v-for="(f,x) in r" v-bind:class="['field-p' + f.player]" v-bind:style="{ }" class="field">
@@ -114,7 +114,7 @@ $edge-width:5px;
 .edge { background:#DDD; position:absolute; border-radius:100%; }
 .edge:hover { background:green; }
 .edge.disabled { display:none;}
-.edge.outer-border { background:#000; }
+.edge.outer-border { background:#000; pointer-events: none;}
 .edge-top { width:100%; height:$edge-width; top:-$edge-width/2; left:0; }
 .edge-left { width:$edge-width; height:100%;  top:0; left:-$edge-width/2; }
 // helpers which make the box to click a bit larger
