@@ -3,6 +3,7 @@
     Current player: {{$store.state.players[currentPlayer-1]}}<br>
     {{$store.state.players[0]}}: {{playerPoints(1)}}<br>
     {{$store.state.players[1]}}: {{playerPoints(2)}}
+    Finished: {{this.finished()}}
     <div style="position:relative; line-height:0">
       <div v-bind:key="y" v-for="(r,y) in fields">
         <!-- Fields -->
@@ -28,7 +29,8 @@ export default {
   name: 'play',
   data: () => {
     var mapNr = Math.floor(Math.random() * defaultMaps.length) + 0;
-      const fields = defaultMaps[mapNr].replace('\r', '').split('\n').filter(c => c != '')
+    var map = defaultMaps[mapNr];
+      const fields = map.map.replace('\r', '').split('\n').filter(c => c != '')
           .map(r => r.split('').map(c => {
               if (c == 'x') return {top: borderType.disabled, left: borderType.disabled, player: null};
               if (c == '┌') return {top: borderType.outer, left: borderType.outer, player: null};
@@ -41,7 +43,8 @@ export default {
       return  {
       fields: fields,
       borderType: borderType,
-      currentPlayer: 1
+      currentPlayer: 1,
+      map: map
     };
   },
   computed: {
@@ -79,11 +82,17 @@ export default {
         this.currentPlayer = this.currentPlayer == 1 ? 2 : 1;
       }
 
-      //eslint-disable-next-line
-      console.log(this.fields);
+      // Finish the game if appropriate
+      if(this.finished()) {
+        this.$store.commit('setScores', [this.playerPoints(1), this.playerPoints(2)]);
+        this.$router.push('/scores');
+      }
     },
     playerPoints: function(player) {
       return this.fields.map(r => r.filter(f => f.player == player).length).reduce((a, b) => a + b, 0);
+    },
+    finished: function() {
+      return this.playerPoints(1) + this.playerPoints(2) == this.map.fieldCount;
     }
   }
 }

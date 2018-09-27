@@ -8,7 +8,8 @@ const state = {
     players: [
 
     ],
-    playerName: ""
+    playerName: "",
+    scores: [0,0]
 }
 
 
@@ -19,6 +20,9 @@ const mutations = {
     },
     deletePlayer (state, player){
         state.players.splice(state.players.indexOf(player), 1);
+    },
+    setScores(state, scores) {
+      state.scores = scores;
     }
 }
 
