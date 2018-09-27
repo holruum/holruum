@@ -1,6 +1,8 @@
 <template>
   <div>
-    Current player: {{$store.state.players[currentPlayer-1]}}
+    Current player: {{$store.state.players[currentPlayer-1]}}<br>
+    {{$store.state.players[0]}}: {{playerPoints(1)}}<br>
+    {{$store.state.players[1]}}: {{playerPoints(2)}}
     <div style="position:relative; line-height:0">
       <div v-bind:key="y" v-for="(r,y) in fields">
         <!-- Fields -->
@@ -14,7 +16,7 @@
 </template>
 
 <script>
-
+import defaultMaps from './maps'
 // the borderTypes
 const borderType = {
   enabled: 1,
@@ -22,19 +24,11 @@ const borderType = {
   disabled: -1 // d means disabled (outside of the map)
 }
 
-const defaultMap = `
-xxxxxxx
-x┌____/
-x|    /
-x|    /
-x--|  /
-xxx|  /
-xxx---x`;
-
 export default {
   name: 'play',
   data: () => {
-      const fields = defaultMap.replace('\r', '').split('\n').filter(c => c != '')
+    var mapNr = Math.floor(Math.random() * defaultMaps.length) + 0;
+      const fields = defaultMaps[mapNr].replace('\r', '').split('\n').filter(c => c != '')
           .map(r => r.split('').map(c => {
               if (c == 'x') return {top: borderType.disabled, left: borderType.disabled, player: null};
               if (c == '┌') return {top: borderType.outer, left: borderType.outer, player: null};
