@@ -14,6 +14,6 @@
         The game starts now. The first player can start and set a first line. <br>
         After that, you can assume what happens now: The second player can set a line <br>
         Awesome what? <br>
-        So the whole game is based on setting lines and create squares. If you get a square you can 
+        So the whole game is based on setting lines and create squares. If you get a square you can
     </div>
 </template>
