@@ -1,10 +1,9 @@
 <template>
-  <div v-bind:class="{finished:finished()}">
+  <div v-bind:class="{finished:finished()} " v-bind:style="{ backgroundColor: color}">
     Current player: {{$store.state.players[currentPlayer-1]}}<br>
     {{$store.state.players[0]}}: {{playerPoints(1)}}<br>
     {{$store.state.players[1]}}: {{playerPoints(2)}}
     Finished: {{this.finished()}}
-    <div style="position:relative; line-height:0">
       <div v-bind:key="y" v-for="(r,y) in fields">
         <!-- Fields -->
         <div v-bind:key="x" v-for="(f,x) in r" v-bind:class="['field-p' + f.player]" v-bind:style="{ }" class="field">
@@ -12,7 +11,6 @@
           <div class="edge-left edge" @click="click(x,y,'left')" v-bind:class="{disabled:f.left == borderType.disabled, 'outer-border': f.left == borderType.outer}"></div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -29,6 +27,7 @@ export default {
   name: 'play',
   data: () => {
     var mapNr = Math.floor(Math.random() * defaultMaps.length) + 0;
+    var color = "#eb9893";
     var map = defaultMaps[mapNr];
       const fields = map.map.replace('\r', '').split('\n').filter(c => c != '')
           .map(r => r.split('').map(c => {
@@ -44,7 +43,8 @@ export default {
       fields: fields,
       borderType: borderType,
       currentPlayer: 1,
-      map: map
+      map: map,
+      color: color
     };
   },
   computed: {
@@ -80,6 +80,7 @@ export default {
       // If the current player did not surround a new box, toggle the player
       if(points === this.playerPoints(this.currentPlayer)) {
         this.currentPlayer = this.currentPlayer == 1 ? 2 : 1;
+        this.color = this.color == "#eb9893" ? "#a3bbdc" : "#eb9893";
       }
 
       // Finish the game if appropriate
