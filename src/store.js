@@ -18,6 +18,14 @@ const mutations = {
         state.players.push(player);
         state.playerName = '';
     },
+    addPlayer1 (state, player1){
+        state.players.push(player1);
+        state.playerName = '';
+    },
+    addPlayer2 (state, player2){
+        state.players.push(player2);
+        state.playerName = '';
+    },
     deletePlayer (state, player){
         state.players.splice(state.players.indexOf(player), 1);
     },
