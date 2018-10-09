@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -14,10 +15,6 @@ const state = {
 
 
 const mutations = {
-    addPlayer (state, player){
-        state.players.push(player);
-        state.playerName = '';
-    },
     addPlayer1 (state, player1){
         state.players.push(player1);
         state.playerName = '';
@@ -26,9 +23,6 @@ const mutations = {
         state.players.push(player2);
         state.playerName = '';
     },
-    deletePlayer (state, player){
-        state.players.splice(state.players.indexOf(player), 1);
-    },
     setScores(state, scores) {
       state.scores = scores;
     }
@@ -36,5 +30,6 @@ const mutations = {
 
 export default new Vuex.Store({
     state,
-    mutations
+    mutations,
+	plugins: [createPersistedState()]
 })
